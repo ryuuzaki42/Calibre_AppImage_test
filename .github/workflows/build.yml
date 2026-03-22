@@ -22,7 +22,7 @@ jobs:
     - name: Make Calibre AppDir/
       run: |
         set -x
-        exit 0
+        #exit 0
         version=$(grep -o "Calibre:.*" README.md | cut -d ' ' -f2)
         echo "Calibre version: $version"
 
@@ -95,18 +95,18 @@ jobs:
 
         #rm calibre.AppDir/AppRun
 
-        #export APPDIR=./calibre.AppDir/
-        export DESKTOP=/usr/share/applications/calibre-gui.desktop
+        export APPDIR=./calibre.AppDir/
+        #export DESKTOP=/usr/share/applications/calibre-gui.desktop
         ls /usr/share/applications/*.desktop
 
         # Bundle the application
-        #./quick-sharun ./calibre.AppDir/calibre/calibre
-        ./quick-sharun /usr/bin/calibre
+        ./quick-sharun ./calibre.AppDir/calibre/calibre
+        #./quick-sharun /usr/bin/calibre
 
         #./quick-sharun \
         #    /lib/x86_64-linux-gnu/libc.so.*
 
-        ./quick-sharun /usr/bin/python3*
+        #./quick-sharun /usr/bin/python3*
 
         #find / | grep "libc"
 
