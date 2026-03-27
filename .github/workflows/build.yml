@@ -93,6 +93,8 @@ jobs:
         cp -rf ./calibre/translations/ .
         cp -rf ./calibre/share/ .
 
+        pwd; ls -lah
+
         rm -rf calibre*
         rm -rf calibre/
 
