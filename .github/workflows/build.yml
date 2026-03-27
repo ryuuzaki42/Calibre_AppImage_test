@@ -100,7 +100,7 @@ jobs:
 
         pwd; ls -lah
         #find .
-        cp /resources/content-server/calibre.png calibre.png
+        cp resources/content-server/calibre.png calibre.png
         echo '[Desktop Entry]
         Type=Application
         Name=Calibre
