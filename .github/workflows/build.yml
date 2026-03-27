@@ -115,13 +115,13 @@ jobs:
 
         mkdir ./shared/lib/qt5
 
-        mv ./shared/lib/calibre/*plugins* ./shared/lib/qt5
+        ##mv ./shared/lib/calibre/*plugins* ./shared/lib/qt5
 
-        cp -rf ./shared/lib/calibre/lib/* ./shared/lib/
+        ##cp -rf ./shared/lib/calibre/lib/* ./shared/lib/
 
-        rm -rf ./shared/lib/calibre/
+        ##rm -rf ./shared/lib/calibre/
 
-        cp qt5.conf ./bin/ | true
+        ##cp qt5.conf ./bin/ | true
 
         ln sharun AppRun
 
