@@ -101,7 +101,7 @@ jobs:
 
         wget https://github.com/VHSgunzo/sharun/releases/download/v0.8.1/sharun-x86_64 -O sharun
         chmod +x sharun
-        ./sharun l -p -v -e -s -k 
+        #./sharun l -p -v -e -s -k 
         ln sharun AppRun
 
         # Bundle the application
