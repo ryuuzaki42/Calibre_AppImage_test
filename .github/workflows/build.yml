@@ -99,7 +99,7 @@ jobs:
         #export DESKTOP=/usr/share/applications/calibre-gui.desktop
         ls /usr/share/applications/*.desktop
 
-        wget -q https://github.com/VHSgunzo/sharun/releases/download/v0.8.1/sharun-x86_64 -O sharun
+        wget https://github.com/VHSgunzo/sharun/releases/download/v0.8.1/sharun-x86_64 -O sharun
         chmod +x sharun
         ./sharun l -p -v -e -s -k 
         ln sharun AppRun
