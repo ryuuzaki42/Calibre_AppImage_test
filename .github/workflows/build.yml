@@ -73,6 +73,7 @@ jobs:
     #    chmod +x appimagetool-x86_64.AppImage
     - name: Sharun
       run: |
+        set -x
         sudo apt install xvfb
 
         mkdir AppDir
@@ -125,7 +126,7 @@ jobs:
 
         ./appimagetool -n ./AppDir
 
-    - name: Sharun
+    - name: Sharun_old
       run: |
         set -x
         exit 0
