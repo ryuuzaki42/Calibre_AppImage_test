@@ -99,8 +99,19 @@ jobs:
         rm -rf calibre/
 
         pwd; ls -lah
-        find .
-        cp -rf calibre.desktop ; cp -rf calibre.png | true
+        #find .
+        cp /resources/content-server/calibre.png calibre.png
+        echo '[Desktop Entry]
+        Type=Application
+        Name=Calibre
+        Comment=E-Book Management
+        Exec=calibre %F
+        Icon=Calibre
+        MimeType=application/x-mobipocket-ebook;application/epub+zip;x-content/ebook-reader
+        Categories=Office;Graphics;Viewer' > Calibre.desktop
+        chmod +x Calibre.desktop
+
+        #cp -rf calibre.desktop ; cp -rf calibre.png | true
 
         mkdir ./shared/lib/qt5
 
