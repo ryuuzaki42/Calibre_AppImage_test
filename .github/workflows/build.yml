@@ -96,6 +96,7 @@ jobs:
         rm -rf calibre*
         rm -rf calibre/
 
+        pwd; ls -lah
         cp -rf calibre.desktop ; cp -rf calibre.png | true
 
         mkdir ./shared/lib/qt5
