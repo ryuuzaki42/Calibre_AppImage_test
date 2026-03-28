@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Calibre
+Exec=calibre
+Icon=Calibre
+Terminal=false
+StartupNotify=false
+Categories=Office;
