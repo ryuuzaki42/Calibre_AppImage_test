@@ -74,62 +74,56 @@ jobs:
     - name: Sharun
       run: |
         set -x
-        sudo apt install xvfb
+        sudo apt-get install xvfb file binutils patchelf findutils grep sed coreutils strace libxcb-cursor0 -y
 
-        mkdir -p AppDir/calibre
+        mkdir AppDir/
+
+        mkdir -p ./AppDir/calibre
+
         cd AppDir/
 
         wget -c -O calibre.txz "https://download.calibre-ebook.com/9.6.0/calibre-9.6.0-x86_64.txz"
+
         tar -axvf calibre.txz -C calibre/
 
         wget -c -q -O sharun "https://github.com/VHSgunzo/sharun/releases/download/v0.8.1/sharun-x86_64" ; chmod +x ./sharun
 
-        export LD_LIBRARY_PATH=./calibre/lib/:./calibre/plugins/:$LD_LIBRARY_PATH
-        export QT_PLUGIN_PATH=./calibre/plugins/:$QT_PLUGIN_PATH
+        export LD_LIBRARY_PATH=$PWD/calibre/lib/:$PWD/calibre/plugins/:$LD_LIBRARY_PATH
+
+        export QT_PLUGIN_PATH=$PWD/calibre/plugins/:$QT_PLUGIN_PATH
 
         xvfb-run -- ./sharun l -p -v -e -s -k ./calibre/bin/* ./calibre/libexec/* ./calibre/lib/*
 
         cp -rf ./calibre/resources/ .
+
         cp -rf ./calibre/translations/ .
+
         cp -rf ./calibre/share/ .
 
-        pwd; ls -lah
+        cd ../
 
-        rm -rf calibre*
-        rm -rf calibre/
+        cp -rf ./Calibre.desktop ./AppDir ; cp -rf ./Calibre.png ./AppDir
 
-        pwd; ls -lah
-        #find .
-        cp resources/content-server/calibre.png calibre.png
-        echo '[Desktop Entry]
-        Type=Application
-        Name=Calibre
-        Comment=E-Book Management
-        Exec=calibre %F
-        Icon=Calibre
-        MimeType=application/x-mobipocket-ebook;application/epub+zip;x-content/ebook-reader
-        Categories=Office;Graphics;Viewer' > Calibre.desktop
-        chmod +x Calibre.desktop
+        mkdir -p ./AppDir/shared/lib/qt5/plugins/
 
-        #cp -rf calibre.desktop ; cp -rf calibre.png | true
+        find ./AppDir/calibre/plugins/ -type d | xargs -i -t -exec cp -rf {} ./AppDir/shared/lib/qt5/plugins/
 
-        mkdir ./shared/lib/qt5
+        cp -rf ./AppDir/calibre/lib/* ./AppDir/shared/lib/
 
-        ##mv ./shared/lib/calibre/*plugins* ./shared/lib/qt5
+        rm -rf ./AppDir/calibre/ ; rm -rf ./AppDir/calibre.txz
 
-        ##cp -rf ./shared/lib/calibre/lib/* ./shared/lib/
+        cp ./qt.conf ./AppDir/bin/
 
-        ##rm -rf ./shared/lib/calibre/
+        ln ./AppDir/sharun ./AppDir/AppRun
 
-        ##cp qt5.conf ./bin/ | true
+        ./AppDir/sharun -g
 
-        ln sharun AppRun
-
-        ./sharun -g
+        echo "QT_QPA_PLATFORM=xcb" >> ./AppDir/env
 
         cd ../
 
         wget -c -q -O "appimagetool" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage" ; chmod  +x ./appimagetool
+
         ./appimagetool -n ./AppDir
 
     - name: Sharun_old
