@@ -121,6 +121,7 @@ jobs:
         echo "QT_QPA_PLATFORM=xcb" >> ./AppDir/env
 
         cd ../
+        pwd; ls -lah
 
         wget -c -q -O "appimagetool" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage" ; chmod  +x ./appimagetool
 
